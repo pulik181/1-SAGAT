@@ -1,0 +1,1249 @@
+<!doctype html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>1 SAGAT — Proof-of-Work вместо резюме</title>
+<meta name="description" content="1 SAGAT — AI-платформа, которая заменяет резюме практической валидацией навыков: 60-минутная профессиональная симуляция, проверка на адаптивность, анти-чит и ранжированный shortlist для HR." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke='%2348b3ae' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 4H7a3 3 0 0 0-3 3v18a3 3 0 0 0 3 3h5'/%3E%3Cpath d='M20 4h5a3 3 0 0 1 3 3v18a3 3 0 0 1-3 3h-5'/%3E%3Cpath d='M11 16.5l3.6 3.6L21.5 12'/%3E%3C/g%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800&family=Onest:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" />
+<link rel="stylesheet" href="./base.css" />
+<link rel="stylesheet" href="./style.css" />
+<link rel="stylesheet" href="./app.css" />
+</head>
+<body>
+<a class="skip" href="#main">К содержанию</a>
+
+<header class="site-head">
+  <div class="wrap head-in">
+    <a class="brand" href="#top" aria-label="1 SAGAT — на главную">
+      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 4H7a3 3 0 0 0-3 3v18a3 3 0 0 0 3 3h5" />
+        <path d="M20 4h5a3 3 0 0 1 3 3v18a3 3 0 0 1-3 3h-5" />
+        <path d="M11 16.5l3.6 3.6L21.5 12" />
+      </svg>
+      <span><b><span class="one">1</span> SAGAT</b><small>proof of work</small></span>
+    </a>
+    <nav class="site-nav" aria-label="Разделы">
+      <a href="#problem">Проблема</a>
+      <a href="#sim">Симуляция</a>
+      <a href="#vacancy">Отбор</a>
+      <a href="#hr">HR-дашборд</a>
+      <a href="#model">Модель</a>
+      <a href="#gtm">GTM</a>
+      <button type="button" class="nav-cta" data-app-open="auto">Кабинет</button>
+    </nav>
+    <div class="head-act">
+      <button class="icon-btn" data-theme-toggle aria-label="Переключить на светлую тему"></button>
+      <button class="btn btn--ghost btn--sm auth-btn" type="button" data-auth-open="signin">Войти</button>
+      <button class="btn btn--primary btn--sm auth-btn head-cta" type="button" data-auth-open="signup"><span class="lbl-lg">Создать аккаунт</span><span class="lbl-sm">Аккаунт</span></button>
+      <div class="acct" id="acct" hidden>
+        <span class="ava" id="acctAva">—</span>
+        <span class="acct-txt"><b id="acctName">—</b><small id="acctRole">—</small></span>
+        <button class="acct-go" type="button" data-app-open="auto">Кабинет</button>
+        <button class="acct-out" type="button" id="acctOut">Выйти</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="wrap hero-in">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">AI-driven HRTech · двухсторонняя платформа</p>
+        <h1 class="h1--claim"><span>Резюме рассказывает.</span><span><em>Работа</em> — доказывает.</span></h1>
+        <p class="lede">1 SAGAT заменяет классическое CV практической валидацией навыков. 60 минут профессиональной симуляции с реальными B2B-ограничениями, автоматическая оценка по JSON-рубрикатору, двухуровневый анти-чит — и HR получает ранжированный shortlist с доказательной базой вместо сотни PDF-файлов.</p>
+        <div class="hero-actions">
+          <button class="btn btn--primary" type="button" data-app-open="run">Пройти симуляцию</button>
+          <button class="btn btn--ghost" type="button" data-app-open="demo-hr">Войти как HR · демо-отбор</button>
+        </div>
+      </div>
+      <div class="hero-side">
+        <div class="hero-side-card">
+          <span class="chip chip--on"><i class="dot"></i>Career Challenge · B2C</span>
+          <p class="big" style="margin-top:.7rem">Бесплатно для студентов</p>
+          <p>Самодиагностика, ИИ-разбор ошибок, персональные рекомендации и Verified Skill Badge в профиль или LinkedIn.</p>
+        </div>
+        <div class="hero-side-card">
+          <span class="chip chip--on"><i class="dot"></i>Hiring Challenge · B2B</span>
+          <p class="big" style="margin-top:.7rem">Подписка для компаний</p>
+          <p>Замкнутый контур отбора под конкретную вакансию: shortlist, доказательства навыков, аналитика воронки.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-row">
+      <span>Казахстан IT · <b>17 резюме на 1 вакансию</b></span>
+      <span>Средняя стоимость найма · <b>$5 475</b></span>
+      <span>Медианный срок закрытия вакансии · <b>45 дней</b></span>
+      <span>Найм по навыкам · <b>85% работодателей</b></span>
+      <span>Рынок оценки талантов 2034 · <b>$57,1 млрд</b></span>
+      <span>Казахстан IT · <b>17 резюме на 1 вакансию</b></span>
+      <span>Средняя стоимость найма · <b>$5 475</b></span>
+      <span>Медианный срок закрытия вакансии · <b>45 дней</b></span>
+      <span>Найм по навыкам · <b>85% работодателей</b></span>
+      <span>Рынок оценки талантов 2034 · <b>$57,1 млрд</b></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROBLEM ============ -->
+<section class="sect" id="problem">
+  <div class="wrap">
+    <p class="eyebrow rv">01 · Проблема</p>
+    <h2 class="sect-title rv">Рынок найма junior-специалистов сломан с двух сторон одновременно</h2>
+    <div class="stat-row rv" style="margin-block-start:var(--space-12)">
+      <div class="stat">
+        <p class="num tnum" data-count="17">17</p>
+        <p class="lbl">резюме на одну вакансию в IT и телекоме Казахстана: 9 700 резюме против 580 открытых позиций — <a href="https://timesca.com/kazakhstans-it-market-post-pandemic-growth-skills-gap-and-17-resumes-per-vacancy/" target="_blank" rel="noopener noreferrer">Times of Central Asia</a></p>
+      </div>
+      <div class="stat">
+        <p class="num tnum"><span data-count="5475">5475</span><span style="font-size:.5em">&thinsp;$</span></p>
+        <p class="lbl">средняя стоимость найма одного не-руководителя; медианный срок закрытия вакансии — 45 дней — <a href="https://www.shrm.org/about/press-room/shrm-releases-2025-benchmarking-reports--how-does-your-organizat" target="_blank" rel="noopener noreferrer">SHRM Benchmarking 2025</a></p>
+      </div>
+      <div class="stat">
+        <p class="num tnum"><span data-count="31">31</span>%</p>
+        <p class="lbl">вакансий в стране подходят junior-уровню, тогда как 48% соискателей — начинающие специалисты — <a href="https://timesca.com/kazakhstans-it-market-post-pandemic-growth-skills-gap-and-17-resumes-per-vacancy/" target="_blank" rel="noopener noreferrer">Times of Central Asia</a></p>
+      </div>
+    </div>
+
+    <div class="split rv" style="margin-block-start:var(--space-12)">
+      <div>
+        <span class="chip"><i class="dot" style="color:var(--color-danger)"></i>Сторона кандидата</span>
+        <h3 style="margin-top:var(--space-5)">Диплом есть. Доказательств нет.</h3>
+        <ul class="pain">
+          <li>Резюме описывает предметы и курсы, а не способность принимать инженерные решения.</li>
+          <li>Без опыта не берут, а опыт негде получить — замкнутый круг первого найма.</li>
+          <li>Студент не знает, где именно он слаб: обратная связь после отказа отсутствует.</li>
+          <li>Портфолио из учебных pet-проектов не отличимо от сотни таких же.</li>
+        </ul>
+      </div>
+      <div>
+        <span class="chip"><i class="dot" style="color:var(--color-danger)"></i>Сторона компании</span>
+        <h3 style="margin-top:var(--space-5)">Воронка забита шумом.</h3>
+        <ul class="pain">
+          <li>HR вручную просматривает сотни нерелевантных CV на одну позицию.</li>
+          <li>Первичный скрининг и проверка тестовых заданий съедают десятки часов инженеров.</li>
+          <li>Каждая ошибка найма junior-а — потерянный бюджет на онбординг и менторство.</li>
+          <li>Тестовые задания массово решаются чужими руками и LLM — сигнал недостоверен.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule" />
+
+<!-- ============ HOW ============ -->
+<section class="sect" id="how">
+  <div class="wrap">
+    <p class="eyebrow rv">02 · Решение</p>
+    <h2 class="sect-title rv">Один сквозной контур: от симуляции до карточки кандидата</h2>
+    <p class="lede rv" style="margin-block-start:var(--space-5)">Вместо самопрезентации — фиксируемая работа. Вместо субъективного впечатления — структурированная оценка. Вместо стопки CV — упорядоченный список с доказательствами.</p>
+    <div class="flow rv">
+      <article class="step">
+        <p class="n">ШАГ 01</p>
+        <h3>Кейс с ограничениями</h3>
+        <p>LLM API подтягивает или генерирует профессиональную задачу с реальными B2B-рамками: бюджет, стек, архитектурные требования, сроки.</p>
+      </article>
+      <article class="step">
+        <p class="n">ШАГ 02</p>
+        <h3>60 минут работы</h3>
+        <p>Кандидат проектирует решение в рабочей среде под телеметрией. Ограничение по времени — часть условия задачи, а не формальность.</p>
+      </article>
+      <article class="step">
+        <p class="n">ШАГ 03</p>
+        <h3>Смена вводных</h3>
+        <p>В середине сессии условия контролируемо меняются — «у заказчика новое ТЗ». Так измеряется адаптивность, а не заученный шаблон.</p>
+      </article>
+      <article class="step">
+        <p class="n">ШАГ 04</p>
+        <h3>Оценка и защита</h3>
+        <p>Автопроверка по строгому JSON-рубрикатору плюс короткое ИИ-интервью по логике решения. На выходе — карточка кандидата.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SIMULATOR ============ -->
+<section class="sect" id="sim" style="background:var(--color-surface-2);border-block:1px solid var(--color-border)">
+  <div class="wrap">
+    <p class="eyebrow rv">03 · Живой контур</p>
+    <h2 class="sect-title rv">Симуляция Junior AI Engineer — прямо здесь</h2>
+    <p class="lede rv" style="margin-block-start:var(--space-5)">Это работающий MVP-сценарий целиком: задача с ограничениями, поведенческая телеметрия, смена ТЗ на ходу, ИИ-интервью и финальная карточка для HR. Начните печатать решение — и попробуйте вставить текст из буфера.</p>
+
+    <div class="sim rv">
+      <div class="sim-bar">
+        <span class="title">1 sagat · career challenge · junior ai engineer</span>
+        <span class="chip mono">кейс из библиотеки · вариация под вакансию</span>
+        <span class="chip mono tnum">60:00</span>
+      </div>
+      <div class="sim-body sim-body--preview">
+        <div class="sim-main">
+          <div class="brief">
+            <h4>Задача · Ассистент поддержки для e-commerce</h4>
+            <p>Клиент — маркетплейс с 4 000 обращений в сутки. Нужно спроектировать LLM-ассистента первой линии, который отвечает по базе из 12 000 документов, умеет отказываться от ответа и передавать диалог оператору. Опишите архитектуру, выбор компонентов и как вы уложитесь в ограничения.</p>
+            <ul class="constraints">
+              <li>бюджет $300/мес</li>
+              <li>срок 3 недели</li>
+              <li>Python + FastAPI</li>
+              <li>без собственных GPU</li>
+              <li>данные не покидают РК</li>
+            </ul>
+          </div>
+          <div class="inject on" role="status">
+            <strong>На 35-й минуте вводные меняются · тест на адаптивность</strong>
+            <p>Заказчик урезает бюджет до <b>$80/мес</b> и требует ответ быстрее <b>2 секунд</b> на 95-м перцентиле. Нужно перестроить решение и назвать, чем именно вы жертвуете.</p>
+          </div>
+          <div class="sim-actions" style="margin-block-start:var(--space-6)">
+            <button class="btn btn--primary" type="button" data-app-open="run">Пройти симуляцию в кабинете</button>
+            <button class="btn btn--ghost" type="button" data-app-open="demo-hr">Посмотреть глазами HR</button>
+          </div>
+          <p class="hint" style="margin-block-start:var(--space-4)">Рабочий контур целиком: серверный таймер, телеметрия, смена ТЗ, ИИ-интервью и оценка по рубрикатору <span class="mono" id="rubricVer">rubric-v2.1</span>. Требуется аккаунт — регистрация занимает 20 секунд.</p>
+        </div>
+        <aside class="sim-side" aria-label="Что фиксирует контур">
+          <p class="eyebrow" style="color:var(--color-primary)">Что фиксирует контур</p>
+          <ul class="tele" style="margin-block-start:var(--space-5)">
+            <li><span class="k">Ритм печати</span><span class="v mono">зн/мин</span></li>
+            <li><span class="k">Вставка из буфера</span><span class="v mono">блокируется</span></li>
+            <li><span class="k">Потеря фокуса окна</span><span class="v mono">счётчик</span></li>
+            <li><span class="k">Пауз &gt; 20 сек</span><span class="v mono">счётчик</span></li>
+            <li><span class="k">Момент смены ТЗ</span><span class="v mono">отметка</span></li>
+          </ul>
+          <p style="font-size:var(--text-xs);color:var(--color-text-faint);margin-block-start:var(--space-6)">Оценка считается на сервере по фиксированному рубрикатору: одинаковое решение всегда даёт одинаковый балл. Динамическая генерация вариаций кейса через LLM API — следующий этап Roadmap.</p>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VACANCY BUILDER (B2B) ============ -->
+<section class="sect" id="vacancy">
+  <div class="wrap">
+    <p class="eyebrow rv">04 · Конструктор отбора</p>
+    <h2 class="sect-title rv">Компания задаёт требования — платформа собирает симуляцию</h2>
+    <p class="lede rv" style="margin-block-start:var(--space-5)">HR не пишет тестовое задание и не придумывает критерии. Он описывает роль и реальные ограничения проекта, а движок превращает это в кейс, рубрикатор оценки и ссылку для кандидатов.</p>
+
+    <div class="vb rv">
+      <div class="vb-form">
+        <h3>Требования к роли</h3>
+        <div class="vb-fields">
+          <label>Роль
+            <select id="vRole">
+              <option value="ai">Junior AI Engineer</option>
+              <option value="be">Junior Backend Engineer</option>
+              <option value="da">Junior Data Analyst</option>
+            </select>
+          </label>
+          <label>Технологический стек
+            <input type="text" id="vStack" value="Python, FastAPI, PostgreSQL" />
+          </label>
+          <label>Бюджет инфраструктуры, $/мес
+            <input type="number" id="vBudget" value="300" min="50" max="20000" step="50" />
+          </label>
+          <label>Срок на решение, дней
+            <input type="number" id="vDays" value="10" min="1" max="120" step="1" />
+          </label>
+          <label>Откликов на вакансию
+            <input type="number" id="vApps" value="214" min="10" max="5000" step="1" />
+          </label>
+          <label>Проходной балл в shortlist
+            <input type="number" id="vCut" value="65" min="30" max="95" step="1" />
+          </label>
+        </div>
+        <label class="chkline"><input type="checkbox" id="vLocal" checked /> Данные должны оставаться в контуре Казахстана</label>
+        <label class="chkline"><input type="checkbox" id="vInject" checked /> Включить проверку на смену ТЗ в середине сессии</label>
+        <div class="vb-act">
+          <button class="btn btn--primary btn--sm" id="vRun" type="button">Запустить отбор</button>
+          <span class="vb-hint" id="vHint">Доступно после входа как компания</span>
+        </div>
+      </div>
+
+      <div class="vb-out">
+        <header class="vb-outhead">
+          <span class="mono">предпросмотр кейса · генерируется из требований</span>
+          <span class="chip chip--on mono" id="vVer">rubric v1</span>
+        </header>
+        <div class="vb-brief">
+          <h4 id="vTitle">—</h4>
+          <p id="vTask">—</p>
+          <ul class="constraints" id="vChips"></ul>
+          <div class="inject" id="vInjBox">
+            <strong>смена вводных на 35-й минуте</strong>
+            <p id="vInjText">—</p>
+          </div>
+        </div>
+        <ul class="vb-rows">
+          <li><span>Ожидаемо завершат симуляцию</span><b class="tnum" id="vDone">—</b></li>
+          <li><span>Пройдут порог и попадут в shortlist</span><b class="tnum" id="vShort">—</b></li>
+          <li class="calc-hi"><span>Резюме, которые не нужно читать вручную</span><b class="tnum" id="vSkip">—</b></li>
+        </ul>
+        <p class="vb-note" id="vNote">Оценки воронки — из демо-модели: 32% доходят до конца, распределение баллов нормальное со средним 58. В продукте цифры считаются по фактическим сессиям.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HR DASHBOARD (B2B) ============ -->
+<section class="sect" id="hr">
+  <div class="wrap">
+    <p class="eyebrow rv">05 · B2B-контур</p>
+    <h2 class="sect-title rv">Что видит HR: shortlist вместо стопки CV</h2>
+    <p class="lede rv" style="margin-block-start:var(--space-5)">Вторая половина продукта — рабочее место рекрутёра. Один отбор под одну вакансию, кандидаты отсортированы по доказанной работе. Откройте любую строку: справа появляется доказательная база, по которой выставлен балл.</p>
+
+    <div class="hrd rv">
+      <div class="hrd-bar">
+        <span class="title">1 sagat · hiring challenge · junior ai engineer · almaty</span>
+        <span class="chip chip--on"><i class="dot"></i>Отбор активен</span>
+      </div>
+      <ul class="hrd-kpis">
+        <li><b class="tnum">214</b><span>откликов на вакансию</span></li>
+        <li><b class="tnum">68</b><span>завершили симуляцию</span></li>
+        <li><b class="tnum">12</b><span>в shortlist с доказательствами</span></li>
+        <li><b class="tnum">38 ч</b><span>ручного скрининга снято</span></li>
+      </ul>
+      <div class="hrd-body">
+        <div class="hrd-list">
+          <div class="hrd-tools">
+            <label class="fl" for="hrSort">Сортировка</label>
+            <select id="hrSort" aria-label="Сортировка кандидатов">
+              <option value="total">по итоговому баллу</option>
+              <option value="adapt">по адаптивности к смене ТЗ</option>
+              <option value="defense">по защите решения</option>
+              <option value="constr">по соблюдению ограничений</option>
+            </select>
+            <button type="button" class="chip chip--btn" id="hrFilter" aria-pressed="false">Скрыть кандидатов с флагами</button>
+          </div>
+          <ul class="hrd-rows" id="hrRows"></ul>
+        </div>
+        <aside class="hrd-panel" id="hrPanel" aria-live="polite"></aside>
+      </div>
+      <p class="hrd-note">Демо-дашборд на синтетических данных одного отбора. В продукте баллы, доказательная база и флаги достоверности приходят из ИИ-оценки конкретной сессии и выгружаются в ATS.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ENGINE + RUBRIC ============ -->
+<section class="sect" id="engine">
+  <div class="wrap">
+    <p class="eyebrow rv">06 · ИИ-движок</p>
+    <h2 class="sect-title rv">Оценка не «на глаз», а по воспроизводимой схеме</h2>
+    <div class="cards cards--2 rv" style="margin-block-start:var(--space-12);align-items:start">
+      <div style="display:grid;gap:var(--space-5)">
+        <article class="card card--feature">
+          <h3>Генерация кейсов</h3>
+          <p>LLM API формирует задачу из шаблона профессии и набора ограничений: бюджет, технологический стек, архитектурные требования, сроки. Каждая сессия — новая вариация, поэтому «слитые» ответы бесполезны.</p>
+        </article>
+        <article class="card">
+          <h3>Тест на адаптивность</h3>
+          <p>Контролируемое изменение вводных в середине сессии показывает, умеет ли кандидат пересобирать решение и внятно объяснять компромисс, а не воспроизводить заученную схему.</p>
+        </article>
+        <article class="card">
+          <h3>Обратная связь вместо отказа</h3>
+          <p>Каждый разбор возвращает кандидату конкретику: какие ограничения нарушены, какие решения слабо обоснованы, что изучить дальше. Это и есть продуктовая ценность бесплатного контура.</p>
+        </article>
+      </div>
+      <div class="rubric">
+        <div class="rubric-head">
+          <h3>Из чего складывается балл</h3>
+          <p>Модель оценивает не «впечатление», а пять заранее объявленных критериев с фиксированными весами. Кандидат и HR видят одну и ту же таблицу, поэтому оценку можно проверить и оспорить.</p>
+        </div>
+        <ul class="rubric-list">
+          <li>
+            <div class="rline"><span class="rname">Логика решения</span><span class="rw tnum">25</span></div>
+            <p>Задача разложена на части, выбор компонентов обоснован, а не перечислен.</p>
+          </li>
+          <li>
+            <div class="rline"><span class="rname">Техническая корректность</span><span class="rw tnum">25</span></div>
+            <p>Архитектура работоспособна, оценки нагрузки и латентности реалистичны.</p>
+          </li>
+          <li>
+            <div class="rline"><span class="rname">Соблюдение ограничений</span><span class="rw tnum">20</span></div>
+            <p>Учтены бюджет, срок, разрешённый стек и требование хранить данные внутри страны.</p>
+          </li>
+          <li>
+            <div class="rline"><span class="rname">Адаптивность к смене ТЗ</span><span class="rw tnum">15</span></div>
+            <p>Решение пересобрано после изменения вводных, компромисс назван словами.</p>
+          </li>
+          <li>
+            <div class="rline"><span class="rname">Защита решения</span><span class="rw tnum">15</span></div>
+            <p>Ответы на уточняющие вопросы согласуются с тем, что кандидат написал сам.</p>
+          </li>
+        </ul>
+        <p class="rubric-out">На выходе: балл от 0 до 100, список доказательств по каждому критерию и рекомендации, что изучить дальше. Из штрафов вычитается телеметрия анти-чита, максимум 12 баллов.</p>
+        <details class="rubric-json">
+          <summary>Показать машинный формат, в котором это уходит в API</summary>
+          <p class="rubric-why">Так рубрикатор выглядит внутри системы: один и тот же файл версионируется, поэтому два кандидата на одну вакансию оцениваются по идентичной схеме, а не по настроению интервьюера.</p>
+<pre><code><span class="val">{</span>
+  <span class="key">"logic"</span>: { <span class="key">"weight"</span>: <span class="val">25</span> },
+  <span class="key">"technical_accuracy"</span>: { <span class="key">"weight"</span>: <span class="val">25</span> },
+  <span class="key">"constraints"</span>: { <span class="key">"weight"</span>: <span class="val">20</span> },
+  <span class="key">"adaptability"</span>: { <span class="key">"weight"</span>: <span class="val">15</span> },
+  <span class="key">"defense"</span>: { <span class="key">"weight"</span>: <span class="val">15</span> },
+  <span class="key">"penalty"</span>: <span class="val">"anti_cheat_telemetry_max_12"</span>,
+  <span class="key">"output"</span>: <span class="val">"score_0_100 + evidence[] + next_steps[]"</span>
+<span class="val">}</span></code></pre>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule" />
+
+<!-- ============ ANTI-CHEAT ============ -->
+<section class="sect" id="anticheat">
+  <div class="wrap">
+    <p class="eyebrow rv">07 · Анти-чит</p>
+    <h2 class="sect-title rv">Два уровня, которые делают результат достоверным</h2>
+    <p class="lede rv" style="margin-block-start:var(--space-5)">Любая оценка навыков стоит ровно столько, сколько стоит доверие к ней. Поэтому достоверность в 1 SAGAT — не опция, а часть движка.</p>
+    <div class="cards cards--2 rv" style="margin-block-start:var(--space-12)">
+      <article class="card">
+        <span class="chip chip--on mono">Уровень 1</span>
+        <h3 style="margin-top:var(--space-5)">Поведенческая телеметрия</h3>
+        <p>Среда фиксирует, как именно появлялось решение, а не только его текст.</p>
+        <ul>
+          <li>Вставка из буфера заблокирована, каждая попытка логируется.</li>
+          <li>Фиксируется потеря фокуса окна — уход в другую вкладку виден.</li>
+          <li>Анализируется ритм печати: человеческий ввод неровный, копипаст — нет.</li>
+          <li>Длинные паузы и всплески объёма помечаются как аномалии.</li>
+        </ul>
+      </article>
+      <article class="card">
+        <span class="chip chip--on mono">Уровень 2</span>
+        <h3 style="margin-top:var(--space-5)">ИИ-интервью · Live Defense</h3>
+        <p>Сразу после сдачи ИИ-агент задаёт 2–3 уточняющих вопроса по логике конкретного решения.</p>
+        <ul>
+          <li>Вопросы генерируются по тексту ответа, а не из общего банка.</li>
+          <li>Несогласованность защиты и решения снижает балл по критерию defense.</li>
+          <li>Чужое решение невозможно защитить: нужно понимать компромиссы.</li>
+          <li>Ответы прикладываются к карточке как доказательная база для HR.</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CANDIDATE CABINET ============ -->
+<section class="sect" id="me" style="background:var(--color-surface-2);border-block:1px solid var(--color-border)">
+  <div class="wrap">
+    <p class="eyebrow rv">08 · Кабинет кандидата</p>
+    <h2 class="sect-title rv">Даже отказ возвращает кандидату результат</h2>
+    <p class="lede rv" style="margin-block-start:var(--space-5)">Career Challenge бесплатен, потому что он и есть источник предложения на платформе. Студент получает разбор ошибок, план развития и Verified Skill Badge, который можно приложить к профилю и LinkedIn вместо обещаний в резюме.</p>
+
+    <div class="me-wrap rv">
+      <div class="gate" id="meGate">
+        <p class="gate-t">Ниже — пример заполненного кабинета</p>
+        <p class="gate-p">Ваш собственный кабинет с реальными результатами симуляций, бейджами, разбором ошибок и планом развития открывается после регистрации.</p>
+        <div class="actions" style="margin-block-start:var(--space-5)">
+          <button class="btn btn--primary btn--sm" type="button" data-app-open="me">Открыть мой кабинет</button>
+          <button class="btn btn--ghost btn--sm" type="button" data-demo-login="student">Войти демо-студентом</button>
+        </div>
+      </div>
+
+      <div class="me-in" id="meIn" aria-hidden="true">
+        <header class="me-head">
+          <div class="me-who">
+            <span class="ava" id="meAva">АС</span>
+            <div>
+              <b id="meName">Аружан С.</b>
+              <span class="mono" id="meOrg">студент · сессия 3 из 3 за месяц</span>
+            </div>
+          </div>
+          <span class="chip chip--on mono">career challenge · бесплатно</span>
+        </header>
+
+        <div class="me-grid">
+          <article class="badge-card">
+            <header>
+              <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 4H7a3 3 0 0 0-3 3v18a3 3 0 0 0 3 3h5" />
+                <path d="M20 4h5a3 3 0 0 1 3 3v18a3 3 0 0 1-3 3h-5" />
+                <path d="M11 16.5l3.6 3.6L21.5 12" />
+              </svg>
+              <span class="mono">verified skill badge</span>
+            </header>
+            <h3>Junior AI Engineer</h3>
+            <p class="bc-score"><b class="tnum">82</b><span>из 100 · выдан 12 сентября 2026</span></p>
+            <ul class="bc-crit">
+              <li><span>Логика решения</span><b class="tnum">21 / 25</b></li>
+              <li><span>Техническая корректность</span><b class="tnum">20 / 25</b></li>
+              <li><span>Соблюдение ограничений</span><b class="tnum">16 / 20</b></li>
+              <li><span>Адаптивность к смене ТЗ</span><b class="tnum">13 / 15</b></li>
+              <li><span>Защита решения</span><b class="tnum">12 / 15</b></li>
+            </ul>
+            <p class="bc-id mono">id проверки · sg-1042-ai-2609 · подтверждается по ссылке</p>
+            <div class="bc-act">
+              <button class="btn btn--primary btn--sm" type="button" id="meLinkedin">Добавить в LinkedIn</button>
+              <button class="btn btn--ghost btn--sm" type="button" id="meCopy">Скопировать ссылку</button>
+            </div>
+          </article>
+
+          <div class="me-col">
+            <article class="card">
+              <h3>Разбор ошибок</h3>
+              <ul class="plist" style="margin-block-start:var(--space-4)">
+                <li><b>Бюджет нарушен на 40%.</b> Managed-вектор на выбранном тарифе выходит за $300 в месяц; в решении не было расчёта стоимости.</li>
+                <li><b>Латентность не проверена.</b> Реранк на всей выборке даёт больше 2 секунд на p95 — оценка нагрузки отсутствовала.</li>
+                <li><b>Компромисс не назван словами.</b> После смены ТЗ решение перестроено верно, но что именно ухудшилось, в ответе не сказано.</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h3>План развития на две недели</h3>
+              <ul class="plist" style="margin-block-start:var(--space-4)">
+                <li><b>Неделя 1.</b> Оценка стоимости и нагрузки RAG-контура: считать токены, объём индекса, p95 латентности до реализации.</li>
+                <li><b>Неделя 2.</b> Гибридный retrieval на pgvector и BM25 своими руками, реранк только для top-k.</li>
+                <li><b>Затем.</b> Повторная симуляция с другим набором ограничений — балл и бейдж обновляются.</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h3>История попыток</h3>
+              <ul class="hist" style="margin-block-start:var(--space-4)">
+                <li><span class="mono">12.09.2026</span><span>Junior AI Engineer · бюджет $300 · KZ-локализация</span><b class="tnum">82</b></li>
+                <li><span class="mono">28.08.2026</span><span>Junior AI Engineer · бюджет $1 200 · без локализации</span><b class="tnum">67</b></li>
+                <li><span class="mono">14.08.2026</span><span>Junior Backend · срок 5 дней</span><b class="tnum">61</b></li>
+              </ul>
+            </article>
+          </div>
+        </div>
+        <p class="me-note">Демо-профиль: цифры зафиксированы для показа. В продукте бейдж и разбор собираются из фактической сессии, а ссылка проверки ведёт на страницу с рубрикатором и выдержками из решения.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MODES ============ -->
+<section class="sect" id="model" style="background:var(--color-surface-2);border-block:1px solid var(--color-border)">
+  <div class="wrap">
+    <p class="eyebrow rv">09 · Два контура и монетизация</p>
+    <h2 class="sect-title rv">Студентам — бесплатно. Компаниям — подписка за автоматизацию воронки</h2>
+    <div class="split rv" style="margin-block-start:var(--space-12)">
+      <div>
+        <span class="chip chip--on mono">Career Challenge · B2C</span>
+        <h3 style="margin-top:var(--space-5)">Источник предложения</h3>
+        <p style="font-size:var(--text-sm);color:var(--color-text-muted)">Бесплатный режим самодиагностики. Студент проходит симуляцию, получает разбор ошибок, рекомендации по развитию и цифровой Verified Skill Badge для профиля и LinkedIn. Это наполняет платформу проверенными кандидатами и создаёт актив, которого нет ни у одной job-борды.</p>
+        <ul class="pain" style="margin-top:var(--space-6)">
+          <li style="color:var(--color-text-muted)">Практика вместо пустого резюме</li>
+          <li style="color:var(--color-text-muted)">Понятная карта слабых мест</li>
+          <li style="color:var(--color-text-muted)">Верифицируемый бейдж навыка</li>
+        </ul>
+      </div>
+      <div>
+        <span class="chip chip--on mono">Hiring Challenge · B2B</span>
+        <h3 style="margin-top:var(--space-5)">Источник выручки</h3>
+        <p style="font-size:var(--text-sm);color:var(--color-text-muted)">SaaS-подписка: компания создаёт контур отбора под вакансию и получает ранжированный shortlist с доказательной базой навыков, доступ к базе верифицированных кандидатов и аналитику воронки. Продаём не профориентацию, а сокращение Time-to-Hire и расходов на скрининг.</p>
+        <ul class="pain" style="margin-top:var(--space-6)">
+          <li style="color:var(--color-text-muted)">Отборы под вакансию · ядро подписки</li>
+          <li style="color:var(--color-text-muted)">Доступ к базе кандидатов</li>
+          <li style="color:var(--color-text-muted)">Аналитика качества воронки</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="calc rv">
+      <div class="calc-in">
+        <h3>Сколько стоит первичный скрининг сейчас</h3>
+        <p style="font-size:var(--text-sm);color:var(--color-text-muted)">Подставьте свои цифры — расчёт пересчитывается сразу. Логика простая: рекрутёр вручную читает весь поток резюме, с контуром 1 SAGAT смотрит только shortlist с доказательствами.</p>
+        <div class="calc-fields">
+          <label>Вакансий в квартал<input type="number" id="cVac" value="6" min="1" max="200" step="1"></label>
+          <label>Резюме на вакансию<input type="number" id="cCv" value="180" min="10" max="2000" step="10"></label>
+          <label>Минут на одно резюме<input type="number" id="cMin" value="7" min="1" max="60" step="1"></label>
+          <label>Стоимость часа рекрутёра, $<input type="number" id="cRate" value="14" min="1" max="200" step="1"></label>
+        </div>
+      </div>
+      <div class="calc-out">
+        <ul class="calc-rows">
+          <li><span>Ручной скрининг сейчас</span><b class="tnum" id="oNow">—</b></li>
+          <li><span>С контуром 1 SAGAT · только shortlist</span><b class="tnum" id="oNew">—</b></li>
+          <li class="calc-hi"><span>Освобождается за квартал</span><b class="tnum" id="oSave">—</b></li>
+        </ul>
+        <p class="calc-note" id="oNote">—</p>
+      </div>
+    </div>
+    <div class="cards cards--3 rv" style="margin-block-start:var(--space-6)">
+      <article class="card">
+        <h3>Холодный старт · кандидаты</h3>
+        <p>Telegram-каналы и IT-сообщества, партнёрства с вузами — прохождение симуляции зачитывается как практика. Нулевая цена входа для студента снимает главное трение.</p>
+      </article>
+      <article class="card">
+        <h3>Холодный старт · компании</h3>
+        <p>Бесплатный пилотный отбор на одну вакансию. Показываем на их же воронке, сколько часов скрининга и денег экономит контур — дальше переход на подписку.</p>
+      </article>
+      <article class="card">
+        <h3>Почему это интересно инвестору</h3>
+        <p>Это не социальный проект профориентации, а инструмент автоматизации HR-воронки с измеримой экономикой: часы инженеров, стоимость найма, срок закрытия вакансии.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARKET ============ -->
+<section class="sect" id="market">
+  <div class="wrap">
+    <p class="eyebrow rv">10 · Рынок</p>
+    <h2 class="sect-title rv">Найм по навыкам стал нормой, а рынок оценки удваивается</h2>
+    <div class="cards cards--2 rv" style="margin-block-start:var(--space-12);align-items:start">
+      <div class="chart-box">
+        <h3>Мировой рынок оценки талантов, млрд $</h3>
+        <div class="chart-holder"><canvas id="mktChart" aria-label="Рост рынка оценки талантов с 25,4 млрд долларов в 2025 году до 57,1 млрд в 2034 году"></canvas></div>
+        <p class="cap">$25,4 млрд в 2025 году → $57,1 млрд к 2034 году, CAGR 9,4%; на pre-hire оценку приходится 62% рынка — <a href="https://www.marketreportsworld.com/market-reports/talent-assessment-market-14721959" target="_blank" rel="noopener noreferrer">Market Reports World</a></p>
+      </div>
+      <div style="display:grid;gap:var(--space-5)">
+        <article class="card">
+          <h3>85% работодателей нанимают по навыкам</h3>
+          <p>Против 81% годом ранее; 76% уже применяют тесты навыков. Две трети отмечают меньше ошибок найма, трое из пяти — сокращение времени закрытия вакансии — <a href="https://www.testgorilla.com/skills-based-hiring/state-of-skills-based-hiring-2025/" target="_blank" rel="noopener noreferrer">TestGorilla, State of Skills-Based Hiring 2025</a>. Независимо это подтверждает <a href="https://www.naceweb.org/job-market/trends-and-predictions/employer-use-of-skills-based-hiring-practices-grows" target="_blank" rel="noopener noreferrer">NACE</a>: 70% работодателей используют практики найма по навыкам.</p>
+        </article>
+        <article class="card">
+          <h3>Казахстан как плацдарм</h3>
+          <p>19 500 зарегистрированных программистов и AI-специалистов к июню 2025 года при 17 резюме на вакансию. Алматы: около 1 500 кандидатов на 133 роли, Астана: 1 000 на 124 — перегретая воронка при дефиците проверенных junior-ов — <a href="https://timesca.com/kazakhstans-it-market-post-pandemic-growth-skills-gap-and-17-resumes-per-vacancy/" target="_blank" rel="noopener noreferrer">Times of Central Asia</a>.</p>
+        </article>
+      </div>
+    </div>
+
+    <h3 class="rv" style="font-size:var(--text-lg);margin-block:var(--space-16) var(--space-5)">Конкурентное поле</h3>
+    <div class="tbl-scroll rv">
+      <table class="cmp">
+        <thead>
+          <tr><th scope="col">Игрок</th><th scope="col">Что проверяет</th><th scope="col">Чего не делает</th><th scope="col">Контекст</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Codility / HackerRank</th>
+            <td>Алгоритмические задачи и код в изоляции</td>
+            <td>Не проверяет работу с бизнес-ограничениями и адаптивность; задачи утекают в открытые банки решений</td>
+            <td>Codility привлекла $24,5 млн, в том числе Series A на $22 млн — <a href="https://www.cbinsights.com/company/codility/financials" target="_blank" rel="noopener noreferrer">CB Insights</a></td>
+          </tr>
+          <tr>
+            <th scope="row">TestGorilla и другие тест-платформы</th>
+            <td>Библиотеки тестов навыков и софт-скиллов</td>
+            <td>Тест с вариантами ответов не равен профессиональной работе; нет защиты решения</td>
+            <td>Сам фиксирует тренд: 85% работодателей в 2025 нанимают по навыкам — <a href="https://www.testgorilla.com/skills-based-hiring/state-of-skills-based-hiring-2025/" target="_blank" rel="noopener noreferrer">TestGorilla</a></td>
+          </tr>
+          <tr>
+            <th scope="row">Job-борды и ATS</th>
+            <td>Сопоставление ключевых слов в резюме</td>
+            <td>Не создаёт сигнал о реальных навыках — только перекладывает шум с одной стороны на другую</td>
+            <td>Результат — 17 резюме на вакансию в IT Казахстана — <a href="https://timesca.com/kazakhstans-it-market-post-pandemic-growth-skills-gap-and-17-resumes-per-vacancy/" target="_blank" rel="noopener noreferrer">Times of Central Asia</a></td>
+          </tr>
+          <tr class="us">
+            <th scope="row">1 SAGAT</th>
+            <td>60-минутная профессиональная симуляция с бизнес-ограничениями, сменой ТЗ и защитой решения</td>
+            <td>Не заменяет финальное интервью — снимает с него первичный скрининг</td>
+            <td>Двухсторонняя модель: бесплатный контур наполняет базу верифицированных кандидатов</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<hr class="rule" />
+
+<!-- ============ GTM ============ -->
+<section class="sect" id="gtm">
+  <div class="wrap">
+    <p class="eyebrow rv">11 · Go-to-Market</p>
+    <h2 class="sect-title rv">Двусторонний рынок запускаем с той стороны, где нет цены входа</h2>
+    <p class="lede rv" style="margin-block-start:var(--space-5)">Проблема курицы и яйца решается асимметрично: кандидатов набираем бесплатным продуктом с личной пользой, компании заводим бесплатным пилотом, где экономия считается на их собственной воронке.</p>
+
+    <div class="split rv" style="margin-block-start:var(--space-12)">
+      <div>
+        <span class="chip chip--on mono">трек 1 · кандидаты</span>
+        <h3 style="margin-top:var(--space-5)">Прямой запуск через сообщества и вузы</h3>
+        <ul class="plist" style="margin-block-start:var(--space-4)">
+          <li><b>Telegram-каналы и IT-сообщества.</b> Формат «пройди симуляцию и узнай свой реальный уровень» распространяется сам — результат хочется сравнить и обсудить.</li>
+          <li><b>Партнёрства с вузами.</b> Прохождение симуляции зачитывается как практика: у вуза появляется измеримый результат по трудоустройству, у студента — бейдж.</li>
+          <li><b>Нулевая цена входа.</b> Студент ничего не платит и ничем не рискует: даже слабый результат возвращает разбор и план развития.</li>
+        </ul>
+      </div>
+      <div>
+        <span class="chip chip--on mono">трек 2 · компании</span>
+        <h3 style="margin-top:var(--space-5)">Бесплатный пилотный отбор на одну вакансию</h3>
+        <ul class="plist" style="margin-block-start:var(--space-4)">
+          <li><b>Одна реальная вакансия.</b> Берём ту, где поток резюме самый тяжёлый, и прогоняем полный контур без оплаты.</li>
+          <li><b>Считаем на их цифрах.</b> Часы скрининга до и после, срок до первого интервью, доля релевантных кандидатов в shortlist.</li>
+          <li><b>Переход на подписку.</b> Продаём не идею, а зафиксированную на пилоте экономию часов и бюджета найма.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pilot rv">
+      <h3>Как проходит пилот</h3>
+      <ol class="pilot-steps">
+        <li><span class="mono">день 1</span><b>Заявка и вакансия</b><p>Берём требования к роли и текущие метрики воронки компании.</p></li>
+        <li><span class="mono">дни 2–3</span><b>Настройка контура</b><p>Конструктор отбора собирает кейс, ограничения и рубрикатор под эту роль.</p></li>
+        <li><span class="mono">дни 4–10</span><b>Отбор кандидатов</b><p>Симуляции, анти-чит, Live Defense, автоматическая оценка.</p></li>
+        <li><span class="mono">день 11</span><b>Отчёт и shortlist</b><p>Ранжированный список с доказательной базой и расчёт сэкономленных часов.</p></li>
+      </ol>
+      <p class="pilot-note">Что измеряем на пилоте: time-to-shortlist, часы ручного скрининга, доля кандидатов, дошедших до интервью, и доля офферов среди них.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ROADMAP ============ -->
+<section class="sect" id="roadmap">
+  <div class="wrap wrap--default" style="padding-inline:0">
+    <div class="wrap">
+      <p class="eyebrow rv">12 · MVP и дорожная карта</p>
+      <h2 class="sect-title rv">Сначала одна профессия до конца, потом масштабирование</h2>
+      <div class="scope rv">
+        <div class="scope-col">
+          <span class="chip chip--on mono">в MVP хакатона</span>
+          <ul class="plist" style="margin-block-start:var(--space-4)">
+            <li>Одна профессия — Junior AI Engineer — доведённая до конца.</li>
+            <li>Кейс с фиксированным набором B2B-ограничений и контролируемая смена ТЗ.</li>
+            <li>Оценка по рубрикатору и Live Defense из двух-трёх вопросов.</li>
+            <li>Телеметрия первого уровня: запрет вставки, потеря фокуса, ритм печати.</li>
+            <li>Карточка кандидата для HR с баллами и доказательной базой.</li>
+          </ul>
+        </div>
+        <div class="scope-col">
+          <span class="chip chip--alert mono">сознательно вне MVP</span>
+          <ul class="plist" style="margin-block-start:var(--space-4)">
+            <li>Полная динамическая генерация кейсов из библиотеки ограничений через LLM API.</li>
+            <li>Продакшн-дашборд с ролями, правами и биллингом подписки.</li>
+            <li>Интеграции с ATS и выгрузка shortlist во внешние системы.</li>
+            <li>Прокторинг с видео и анализ окружения кандидата.</li>
+            <li>Библиотека профессий за пределами первой роли.</li>
+          </ul>
+        </div>
+      </div>
+      <ul class="rm rv">
+        <li>
+          <span class="when">Хакатон · MVP</span>
+          <div>
+            <h3>Один сквозной сценарий</h3>
+            <p>Профессия Junior AI Engineer: симуляция → ИИ-проверка по рубрикатору → финальная карточка-резюме кандидата для HR. Работающий контур целиком, а не набор экранов.</p>
+          </div>
+        </li>
+        <li>
+          <span class="when">Этап 2</span>
+          <div>
+            <h3>Динамическая генерация вариаций</h3>
+            <p>Кейсы собираются через LLM API из библиотеки ограничений: каждая сессия уникальна, банк готовых решений теряет смысл.</p>
+          </div>
+        </li>
+        <li>
+          <span class="when">Этап 3</span>
+          <div>
+            <h3>Полнофункциональный B2B-дашборд</h3>
+            <p>Создание отборов под вакансию, ранжированный shortlist, доказательная база по каждому кандидату, аналитика воронки и выгрузка в ATS.</p>
+          </div>
+        </li>
+        <li>
+          <span class="when">Этап 4</span>
+          <div>
+            <h3>Расширение профессий и база кандидатов</h3>
+            <p>Новые роли по той же схеме рубрикатора, партнёрства с вузами для зачёта симуляции как практики, монетизация доступа к базе верифицированных навыков.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="sect cta">
+  <div class="wrap">
+    <p class="eyebrow rv">Дальше</p>
+    <h2 class="rv" style="margin-block-start:var(--space-5)">Проверять навыки дешевле, чем исправлять ошибку найма</h2>
+    <div class="actions rv">
+      <button class="btn btn--primary" type="button" data-auth-open="signup" data-auth-role="candidate">Пройти симуляцию бесплатно</button>
+      <button class="btn btn--ghost" type="button" data-auth-open="signup" data-auth-role="company">Запросить пилотный отбор</button>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap foot-grid">
+    <div>
+      <a class="brand" href="#top" aria-label="1 SAGAT — наверх">
+        <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 4H7a3 3 0 0 0-3 3v18a3 3 0 0 0 3 3h5" />
+          <path d="M20 4h5a3 3 0 0 1 3 3v18a3 3 0 0 1-3 3h-5" />
+          <path d="M11 16.5l3.6 3.6L21.5 12" />
+        </svg>
+        <span><b><span class="one">1</span> SAGAT</b><small>proof of work</small></span>
+      </a>
+      <p style="margin-block-start:var(--space-4);max-width:34ch;font-size:var(--text-sm)">Практическая валидация навыков вместо резюме. Almaty, KZ.</p>
+    </div>
+    <div>
+      <h4>Разделы</h4>
+      <ul>
+        <li><a href="#problem">Проблема</a></li>
+        <li><a href="#how">Как работает</a></li>
+        <li><a href="#sim">Симуляция</a></li>
+        <li><a href="#vacancy">Конструктор отбора</a></li>
+        <li><a href="#hr">HR-дашборд</a></li>
+        <li><a href="#me">Кабинет кандидата</a></li>
+        <li><a href="#anticheat">Анти-чит</a></li>
+        <li><a href="#market">Рынок</a></li>
+        <li><a href="#gtm">Go-to-Market</a></li>
+        <li><a href="#roadmap">Дорожная карта</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Источники данных</h4>
+      <ul class="src-list">
+        <li><a href="https://www.shrm.org/about/press-room/shrm-releases-2025-benchmarking-reports--how-does-your-organizat" target="_blank" rel="noopener noreferrer">SHRM Benchmarking Reports 2025 — стоимость и срок найма</a></li>
+        <li><a href="https://www.testgorilla.com/skills-based-hiring/state-of-skills-based-hiring-2025/" target="_blank" rel="noopener noreferrer">TestGorilla — State of Skills-Based Hiring 2025</a></li>
+        <li><a href="https://www.marketreportsworld.com/market-reports/talent-assessment-market-14721959" target="_blank" rel="noopener noreferrer">Market Reports World — Talent Assessment Market</a></li>
+        <li><a href="https://timesca.com/kazakhstans-it-market-post-pandemic-growth-skills-gap-and-17-resumes-per-vacancy/" target="_blank" rel="noopener noreferrer">Times of Central Asia — IT-рынок Казахстана</a></li>
+        <li><a href="https://www.cbinsights.com/company/codility/financials" target="_blank" rel="noopener noreferrer">CB Insights — Codility financials</a></li>
+        <li><a href="https://www.naceweb.org/job-market/trends-and-predictions/employer-use-of-skills-based-hiring-practices-grows" target="_blank" rel="noopener noreferrer">NACE — рост найма по навыкам</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ APP SHELL ============ -->
+<div class="app" id="app" hidden>
+  <header class="app-head">
+    <div class="app-head-in">
+      <button class="app-brand" type="button" data-app-close aria-label="Вернуться на сайт">
+        <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 4H7a3 3 0 0 0-3 3v18a3 3 0 0 0 3 3h5" />
+          <path d="M20 4h5a3 3 0 0 1 3 3v18a3 3 0 0 1-3 3h-5" />
+          <path d="M11 16.5l3.6 3.6L21.5 12" />
+        </svg>
+        <span><b><span class="one">1</span> SAGAT</b><small id="appModeLabel">кабинет</small></span>
+      </button>
+      <nav class="app-nav" id="appNav" aria-label="Разделы кабинета"></nav>
+      <div class="app-head-act">
+        <button class="icon-btn" data-theme-toggle-app aria-label="Переключить тему"></button>
+        <div class="app-who" id="appWho">
+          <span class="ava" id="appAva">—</span>
+          <span class="app-who-txt"><b id="appName">—</b><small id="appRole">—</small></span>
+        </div>
+        <button class="btn btn--ghost btn--sm" type="button" id="appOut">Выйти</button>
+        <button class="icon-btn" type="button" data-app-close aria-label="Закрыть кабинет">
+          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l10 10M13 3L3 13" /></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="app-body" id="appView" tabindex="-1"></div>
+  <div class="app-offline" id="appOffline" hidden>Нет связи с сервером платформы. Данные не сохраняются — перезапустите бэкенд.</div>
+</div>
+
+<!-- ============ AUTH ============ -->
+<dialog class="auth" id="auth" aria-labelledby="authTitle">
+  <div class="auth-grid">
+    <aside class="auth-aside">
+      <span class="brand brand--static">
+        <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 4H7a3 3 0 0 0-3 3v18a3 3 0 0 0 3 3h5" />
+          <path d="M20 4h5a3 3 0 0 1 3 3v18a3 3 0 0 1-3 3h-5" />
+          <path d="M11 16.5l3.6 3.6L21.5 12" />
+        </svg>
+        <span><b><span class="one">1</span> SAGAT</b><small>proof of work</small></span>
+      </span>
+      <ul class="auth-pts">
+        <li data-for="candidate"><b>60 минут вместо резюме.</b> Один сквозной кейс с реальными ограничениями и разбор ошибок на выходе.</li>
+        <li data-for="candidate"><b>Verified Skill Badge.</b> Подтверждённый балл по пяти критериям для профиля и LinkedIn.</li>
+        <li data-for="candidate"><b>Бесплатно для студентов.</b> Career Challenge не требует оплаты и не требует опыта работы.</li>
+        <li data-for="company" hidden><b>Отбор под вакансию.</b> Конструктор собирает кейс и рубрикатор из ваших требований.</li>
+        <li data-for="company" hidden><b>Shortlist с доказательствами.</b> Ранжированный список, баллы по критериям и выдержки из решений.</li>
+        <li data-for="company" hidden><b>Пилот на одну вакансию бесплатно.</b> Экономию считаем на вашей воронке.</li>
+      </ul>
+      <div class="auth-demo">
+        <p class="auth-disc">Аккаунты, сессии симуляций и shortlist хранятся на сервере. Пароли — PBKDF2-SHA256, 120 000 итераций.</p>
+        <p class="auth-disc" style="margin-block-start:var(--space-3)">Быстрый вход в демо-данные:</p>
+        <div class="auth-demo-btns">
+          <button type="button" class="lnk" data-demo-login="student">студент · Алишер</button>
+          <button type="button" class="lnk" data-demo-login="hr">HR · TechnoDom</button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="auth-main">
+      <div class="auth-top">
+        <div class="auth-tabs" role="tablist" aria-label="Вход или регистрация">
+          <button type="button" role="tab" data-auth-tab="signup" aria-selected="true">Регистрация</button>
+          <button type="button" role="tab" data-auth-tab="signin" aria-selected="false">Вход</button>
+        </div>
+        <button type="button" class="icon-btn" id="authClose" aria-label="Закрыть">
+          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l10 10M13 3L3 13" /></svg>
+        </button>
+      </div>
+
+      <h3 id="authTitle">Создать аккаунт</h3>
+      <p class="auth-sub" id="authSub">Выберите, с какой стороны вы приходите на платформу.</p>
+
+      <div class="auth-roles" role="radiogroup" aria-label="Тип аккаунта">
+        <button type="button" data-role="candidate" aria-checked="true" role="radio">
+          <b>Кандидат или студент</b>
+          <span>Career Challenge, бейдж, разбор ошибок. Бесплатно.</span>
+        </button>
+        <button type="button" data-role="company" aria-checked="false" role="radio">
+          <b>Компания или HR</b>
+          <span>Hiring Challenge: отборы под вакансию и shortlist.</span>
+        </button>
+      </div>
+
+      <form id="authForm" novalidate>
+        <label class="af" data-only="signup">Имя и фамилия
+          <input type="text" id="afName" autocomplete="name" placeholder="Аружан Сейтказы" />
+        </label>
+        <label class="af">Почта
+          <input type="email" id="afEmail" autocomplete="email" placeholder="you@company.kz" />
+        </label>
+        <label class="af" data-only="signup" id="afOrgWrap">Вуз или место учёбы
+          <input type="text" id="afOrg" placeholder="КБТУ, 3 курс" />
+        </label>
+        <label class="af af--pass">Пароль
+          <input type="password" id="afPass" autocomplete="current-password" placeholder="минимум 8 символов" />
+          <button type="button" class="pass-eye" id="afEye" aria-label="Показать пароль">показать</button>
+        </label>
+        <div class="pass-meter" data-only="signup" id="afMeter"><i></i><i></i><i></i><i></i><span>—</span></div>
+        <label class="chkline" data-only="signup"><input type="checkbox" id="afAgree" /> Соглашаюсь с обработкой данных и правилами честного прохождения: без вставки готовых ответов и с защитой решения перед ИИ-интервьюером.</label>
+        <p class="auth-err" id="afErr" role="alert" hidden></p>
+        <button class="btn btn--primary" type="submit" id="afSubmit">Создать аккаунт</button>
+        <p class="auth-alt" id="authAlt">Уже есть аккаунт? <button type="button" class="lnk" data-auth-tab="signin">Войти</button></p>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="./app.js" defer></script>
+<script src="./app-core.js" defer></script>
+<script data-pplx-inline-edit>
+(function () {
+  if (window === window.top) return;
+
+  const allowedParentOrigins = ["https://www.perplexity.ai","https://perplexity.ai","https://testing.perplexity.ai","https://staging.perplexity.ai","https://*.preview.i.perplexity.ai","http://perplexity.localhost","http://localhost:1420","http://127.0.0.1:1420","http://localhost:3000","http://127.0.0.1:3000","http://localhost:5173","http://127.0.0.1:5173"];
+  const MAX_FONT_BYTES = 500 * 1024;
+  const MAX_TOTAL_FONT_BYTES = 2 * 1024 * 1024;
+  let scrollForwarding = false;
+  let scrollRaf = 0;
+  let trustedTopOrigin = null;
+
+  // Allow entries like "https://*.preview.i.perplexity.ai" — the wildcard
+  // matches a single DNS label (no dots), so "https://*.foo" cannot stretch
+  // across multiple labels.
+  function matchesAllowedOrigin(origin) {
+    if (!origin) return false;
+    for (const entry of allowedParentOrigins) {
+      if (!entry.includes("*")) {
+        if (entry === origin) return true;
+        continue;
+      }
+      const pattern = new RegExp(
+        "^" +
+          entry.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, "[^.]+") +
+          "$",
+      );
+      if (pattern.test(origin)) return true;
+    }
+    return false;
+  }
+
+  // Trust decision: when the sender is same-origin-visible (event.origin is a
+  // real origin like https://www.perplexity.ai) we trust event.origin directly.
+  // When event.origin is "null" (opaque broker srcdoc), we fall back to the
+  // broker's stamped `parentOrigin` to identify the top window. The fallback
+  // is claim-only — we rely on the browser's native `targetOrigin` enforcement
+  // on the response path (see postToTrustedTop) to ensure replies can't be
+  // delivered to anyone but the actual top window of that claimed origin.
+  function getTrustedParentOrigin(event) {
+    const forwardedParentOrigin =
+      typeof event.data.parentOrigin === "string" ? event.data.parentOrigin : null;
+    const parentOrigin = event.origin === "null" ? forwardedParentOrigin : event.origin;
+    return matchesAllowedOrigin(parentOrigin) ? parentOrigin : null;
+  }
+
+  // All responses go to window.top with targetOrigin = the allowlisted origin.
+  // An attacker that iframes us inside their own null-origin broker can claim
+  // any parentOrigin they like, but the browser will drop the reply whenever
+  // the real top's origin doesn't match — so the screenshot never leaves.
+  function postToTrustedTop(message) {
+    if (!trustedTopOrigin) return;
+    try {
+      window.top.postMessage(message, trustedTopOrigin);
+    } catch (_error) {}
+  }
+
+  function inlineAll(original, clone) {
+    if (original.nodeType !== 1 || clone.nodeType !== 1) return;
+
+    try {
+      const computedStyle = getComputedStyle(original);
+      // cssText on a computed style is the serialized declaration in modern
+      // Chromium/Safari — a single read beats enumerating ~400 longhand
+      // properties. Firefox returns "" here, so we fall back on empty.
+      const serialized = computedStyle.cssText;
+      if (serialized) {
+        clone.style.cssText = serialized;
+      } else {
+        const parts = new Array(computedStyle.length);
+        for (let index = 0; index < computedStyle.length; index += 1) {
+          const property = computedStyle[index];
+          parts[index] = `${property}:${computedStyle.getPropertyValue(property)};`;
+        }
+        clone.style.cssText = parts.join("");
+      }
+    } catch (_error) {}
+
+    const originalChildren = original.children;
+    const clonedChildren = clone.children;
+    for (
+      let index = 0;
+      index < originalChildren.length && index < clonedChildren.length;
+      index += 1
+    ) {
+      inlineAll(originalChildren[index], clonedChildren[index]);
+    }
+  }
+
+  function extractFontUrl(srcValue) {
+    const matches = [
+      ...srcValue.matchAll(
+        /url\(["']?([^"')]+)["']?\)(?:\s*format\(["']?([^"')]+)["']?\))?/gi,
+      ),
+    ];
+    if (matches.length === 0) return null;
+    const woff2 = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff2"));
+    if (woff2) return woff2[1];
+    const woff = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff"));
+    if (woff) return woff[1];
+    return matches[0][1];
+  }
+
+  // Cache resolved font URL -> data URI across captures. Fonts on a page
+  // essentially never change, and a batch run emits multiple captures back to
+  // back — without this we'd refetch + re-base64 every time.
+  const fontDataUriCache = new Map();
+  const SRC_DECLARATION_RE = /src\s*:\s*[^;}]+/i;
+
+  async function fetchAsDataUri(url) {
+    if (fontDataUriCache.has(url)) return fontDataUriCache.get(url);
+    let dataUri = null;
+    try {
+      const response = await fetch(url, { mode: "cors", credentials: "omit" });
+      if (response.ok) {
+        const blob = await response.blob();
+        if (blob.size <= MAX_FONT_BYTES) {
+          dataUri = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () =>
+              resolve(typeof reader.result === "string" ? reader.result : null);
+            reader.onerror = () => resolve(null);
+            reader.readAsDataURL(blob);
+          });
+        }
+      }
+    } catch (_error) {
+      dataUri = null;
+    }
+    fontDataUriCache.set(url, dataUri);
+    return dataUri;
+  }
+
+  function collectFontFaceRuleTexts() {
+    const rules = [];
+    for (const sheet of document.styleSheets) {
+      let cssRules;
+      try {
+        cssRules = sheet.cssRules;
+      } catch (_error) {
+        continue;
+      }
+      if (!cssRules) continue;
+      for (const rule of cssRules) {
+        const cssText = rule.cssText || "";
+        if (cssText.startsWith("@font-face")) rules.push(cssText);
+      }
+    }
+    return rules;
+  }
+
+  async function buildInlinedFontCss() {
+    const ruleTexts = collectFontFaceRuleTexts();
+    if (ruleTexts.length === 0) return null;
+
+    const resolved = ruleTexts.map((cssText) => {
+      if (!SRC_DECLARATION_RE.test(cssText)) return null;
+      const srcMatch = cssText.match(/src\s*:\s*([^;}]+)[;}]/i);
+      if (!srcMatch) return null;
+      const url = extractFontUrl(srcMatch[1]);
+      if (!url) return null;
+      try {
+        return { cssText, url: new URL(url, document.baseURI).href };
+      } catch (_error) {
+        return null;
+      }
+    });
+
+    const dataUris = await Promise.all(
+      resolved.map((entry) => (entry ? fetchAsDataUri(entry.url) : Promise.resolve(null))),
+    );
+
+    const inlined = [];
+    let totalBytes = 0;
+    for (let index = 0; index < resolved.length; index += 1) {
+      const entry = resolved[index];
+      const dataUri = dataUris[index];
+      if (!entry || !dataUri) continue;
+      const approxBytes = dataUri.length * 0.75;
+      if (totalBytes + approxBytes > MAX_TOTAL_FONT_BYTES) break;
+      totalBytes += approxBytes;
+      inlined.push(entry.cssText.replace(SRC_DECLARATION_RE, `src: url("${dataUri}")`));
+    }
+    return inlined.length > 0 ? inlined.join("\n") : null;
+  }
+
+  function stripExternal(clone) {
+    const images = clone.querySelectorAll("img");
+    for (let index = 0; index < images.length; index += 1) {
+      const src = images[index].getAttribute("src");
+      if (src && !src.startsWith("data:")) images[index].removeAttribute("src");
+    }
+
+    const elements = clone.querySelectorAll("*");
+    for (let index = 0; index < elements.length; index += 1) {
+      const style = elements[index].style.cssText;
+      if (style && style.includes("url(")) {
+        elements[index].style.cssText = style.replace(
+          /url\(["']?(?!data:)[^)"']*["']?\)/gi,
+          "none",
+        );
+      }
+    }
+  }
+
+  function emitScroll() {
+    scrollRaf = 0;
+    if (!scrollForwarding) return;
+    postToTrustedTop({
+      type: "INLINE_EDIT_SCROLL",
+      scrollX: window.scrollX,
+      scrollY: window.scrollY,
+    });
+  }
+
+  window.addEventListener(
+    "scroll",
+    function () {
+      if (!scrollForwarding || scrollRaf) return;
+      scrollRaf = requestAnimationFrame(emitScroll);
+    },
+    { passive: true, capture: true },
+  );
+
+  async function handleCaptureRequest(event) {
+    const requestId = event.data.requestId;
+    const scrollX = window.scrollX;
+    const scrollY = window.scrollY;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    function postResult(dataUrl) {
+      postToTrustedTop({
+        type: "INLINE_EDIT_SCREENSHOT_RESULT",
+        requestId,
+        dataUrl,
+        scrollX,
+        scrollY,
+      });
+    }
+
+    try {
+      // Wait for any pending web fonts to resolve so both inline metrics and
+      // the @font-face inlining below see the same loaded faces.
+      if (document.fonts && document.fonts.ready) {
+        try {
+          await document.fonts.ready;
+        } catch (_error) {}
+      }
+
+      const clone = document.documentElement.cloneNode(true);
+      inlineAll(document.documentElement, clone);
+
+      const removedNodes = clone.querySelectorAll("script,link[rel=\"stylesheet\"],style");
+      for (let index = 0; index < removedNodes.length; index += 1) {
+        removedNodes[index].remove();
+      }
+
+      stripExternal(clone);
+
+      // Re-embed web fonts as data-URI @font-face rules so the SVG rasterizer
+      // can resolve them — external font URLs aren't fetched during
+      // foreignObject rendering, which would otherwise force a fallback face
+      // and change text metrics.
+      const inlinedFontCss = await buildInlinedFontCss();
+      if (inlinedFontCss) {
+        const styleEl = document.createElement("style");
+        styleEl.textContent = inlinedFontCss;
+        const head = clone.querySelector("head");
+        if (head) head.appendChild(styleEl);
+        else clone.insertBefore(styleEl, clone.firstChild);
+      }
+
+      const html = new XMLSerializer().serializeToString(clone);
+      const svg =
+        `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">` +
+        '<foreignObject width="100%" height="100%">' +
+        `<div xmlns="http://www.w3.org/1999/xhtml" style="width:${width}px;height:${height}px;overflow:hidden">` +
+        `<div style="position:relative;left:-${scrollX}px;top:-${scrollY}px">` +
+        html +
+        "</div></div></foreignObject></svg>";
+      const svgUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+      const image = new Image();
+      image.onload = function () {
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext("2d").drawImage(image, 0, 0);
+        postResult(canvas.toDataURL("image/png"));
+      };
+      image.onerror = function () {
+        postResult(null);
+      };
+      image.src = svgUrl;
+    } catch (_error) {
+      postResult(null);
+    }
+  }
+
+  window.addEventListener("message", function (event) {
+    if (!event.data) return;
+    // Only accept messages from the direct parent frame. Blocks sibling /
+    // unrelated-window postMessage senders that could otherwise reach us.
+    if (event.source !== window.parent) return;
+
+    const trustedParentOrigin = getTrustedParentOrigin(event);
+    if (!trustedParentOrigin) return;
+    trustedTopOrigin = trustedParentOrigin;
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_START") {
+      scrollForwarding = true;
+      emitScroll();
+      return;
+    }
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_STOP") {
+      scrollForwarding = false;
+      if (scrollRaf) cancelAnimationFrame(scrollRaf);
+      scrollRaf = 0;
+      return;
+    }
+
+    if (event.data.type !== "INLINE_EDIT_CAPTURE_REQUEST") return;
+
+    handleCaptureRequest(event);
+  });
+})();
+
+
+</script></body>
+</html>
